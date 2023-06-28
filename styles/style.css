@@ -84,11 +84,6 @@ body {
   align-items: center;
 }
 
-/* Код до нового блока */
-/* .menu-item {
-  margin-right: 88px;
-} */
-
 .menu-item {
   margin-right: 40px;
 }
@@ -657,13 +652,6 @@ body {
 }
 
 @media (min-width: 1605px) {
-  .main,
-  .why,
-  .order,
-  .review {
-    background-image: none;
-  }
-
   .container {
     max-width: 1400px;
     margin: 0 auto;
@@ -679,6 +667,15 @@ body {
 
   .menu-item {
     margin-right: 30px;
+  }
+
+  .main {
+    background-size: cover;
+  }
+
+  .why {
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 
   .products-items {
@@ -711,5 +708,9 @@ body {
     display: flex;
     justify-content: space-between;
     height: 60px;
+  }
+
+  .order {
+    background-size: cover;
   }
 }
