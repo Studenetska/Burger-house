@@ -32,7 +32,7 @@
             <li class="menu-item">
               <a data-link="review">Отзывы наших клиентов</a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item header-cart-actions">
               <span class="cart-counter-label">
                 <svg width="35" height="35" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -41,12 +41,83 @@
                 </svg>
                 <span class="cart-items-counter"></span>
               </span>
+              <section class="cart-product-items">
+                <div class="cart-content-container">
+                  <div class="cart-product-list-header">
+                    <div class="cart-product-header-item-img">Вид</div>
+                    <div class="cart-product-header-item-title">Название бургера</div>
+                    <div class="cart-product-header-item-weight">Вес</div>
+                    <div class="cart-product-header-item-price">Стоимость</div>
+                    <div class="cart-product-header-item-count">Кол-во</div>
+                  </div>
+                  <div class="cart-product-list-body"></div>
+                </div>
+                <div class="cart-total-amount"></div>
+                <div class="cart-main-actions">
+                  <button type="button">Оформить заказ</button>
+                  <button type="button">Продолжить покупки</button>
+                  <button type="button">Очистить корзину</button>
+                </div>
+              </section>
             </li>
           </ul>
         </nav>
         <div class="currency" title="Изменить валюту" id="change-currency">$</div>
       </div>
     </header>
+
+    <!-- попытка добавления корзины будет появляться только при клике на корзину вверху -->
+    <!-- <section class="cart-product-items" style="display: none;">
+      <div class="content-container">
+        <div class="cart-product-image">
+          <div class="cart-product-header-text"></div>
+        </div>
+        <div class="cart-product-title">
+          <div class="cart-product-header-text">Вид</div>
+        </div>
+        <div class="cart-product-price">
+          <div class="cart-product-header-text">Название бургера</div>
+        </div>
+        <div class="cart-product-weight">
+          <div class="cart-product-header-text">Вес</div>
+        </div>
+        <div class="cart-product-count">
+          <div class="cart-product-header-text">Кол-во</div>
+        </div>
+        <div class="cart-total-amount"></div>
+      </div>
+      <div class="cart-main-actions">
+        <button type="button">Оформить заказ</button>
+        <button type="button">Продолжить покупки</button>
+        <button type="button">Очистить корзину</button>
+        <div>
+    </section> -->
+
+
+    <!-- <section class="cart-product-items">
+      <div class="cart-content-container">
+        <div class="cart-product-list">
+          <div class="cart-product-header-item-img">Вид</div>
+          <div class="cart-product-header-item-title">Название бургера</div>
+          <div class="cart-product-header-item-weight">Вес</div>
+          <div class="cart-product-header-item-price">Стоимость</div>
+          <div class="cart-product-header-item-count">Кол-во</div>
+        </div>
+      </div>
+      <div class="cart-total-amount"></div>
+      <div class="cart-main-actions">
+        <button type="button">Оформить заказ</button>
+        <button type="button">Продолжить покупки</button>
+        <button type="button">Очистить корзину</button>
+      </div>
+    </section> -->
+
+
+
+
+
+
+    <!-- заканчивается блок с корзиной -->
 
     <section class="main-content">
       <div class="container">
@@ -103,7 +174,7 @@
     <div class="container">
       <div class="products-title common-title">выберите свой бургер</div>
       <div class="products-items">
-        <div class="products-item">
+        <div class="products-item" data-product-id="1">
           <div class="products-item-image">
             <img src="images/bur_1.png" alt="burger-1">
           </div>
@@ -134,14 +205,14 @@
             </div>
           </div>
         </div>
-        <div class="products-item">
+        <div class="products-item" data-product-id="2">
           <div class="products-item-image">
             <img src="images/bur_2.png" alt="burger-2">
           </div>
           <div class="products-item-title">BBQ с беконом и курицей</div>
           <div class="products-item-text">
             Булочка бриошь с кунжутом, куриная котлета, сыр чеддер, томат, огурец маринованный, лук маринованный, салат
-            Ромен, бекон, соус BBQ
+            Ромен, соус BBQ
           </div>
           <div class="products-item-extra">
             <div class="products-items-info">
@@ -165,7 +236,7 @@
             </div>
           </div>
         </div>
-        <div class="products-item">
+        <div class="products-item" data-product-id="3">
           <div class="products-item-image">
             <img src="images/bur_3.png" alt="burger-3">
           </div>
@@ -196,13 +267,14 @@
             </div>
           </div>
         </div>
-        <div class="products-item">
+        <div class="products-item" data-product-id="4">
           <div class="products-item-image">
             <img src="images/bur_4.png" alt="burger-4">
           </div>
           <div class="products-item-title">Баварский бургер</div>
           <div class="products-item-text">
-            Булочка для бургера, говяжья котлета, красный лук, сыр, охотничья колбаска, соус барбекю, соус сырный, салат
+            Булочка для бургера, говяжья котлета, красный лук, плавленный сыр, охотничья колбаска, соус барбекю, соус
+            сырный, салат
             айсберг
           </div>
           <div class="products-item-extra">
@@ -227,13 +299,14 @@
             </div>
           </div>
         </div>
-        <div class="products-item">
+        <div class="products-item" data-product-id="5">
           <div class="products-item-image">
             <img src="images/bur_5.png" alt="burger-5">
           </div>
           <div class="products-item-title">Бекон чизбургер</div>
           <div class="products-item-text">
-            Булочка для бургера, говяжья котлета, грудинка, помидор, огурец маринованный, сыр, сырный соус, кетчуп,
+            Булочка для бургера, говяжья котлета, грудинка, помидор, красный лук, огурец маринованный, сыр, сырный соус,
+            кетчуп,
             зелень
           </div>
           <div class="products-item-extra">
@@ -258,15 +331,14 @@
             </div>
           </div>
         </div>
-        <div class="products-item">
+        <div class="products-item" data-product-id="6">
           <div class="products-item-image">
             <img src="images/bur_6.png" alt="burger-6">
           </div>
           <div class="products-item-title">Индиана бургер</div>
           <div class="products-item-text">
-            Булочка для бургера, котлета куриная, грудинка, яйцо, огурец маринованный, криспи лук, кетчуп, соус
-            сырный,
-            горчица, зелень
+            Булочка для бургера, котлета куриная, грудинка, яйцо, огурец маринованный, криспи лук, соус
+            сырный,горчица, зелень, сыр
           </div>
           <div class="products-item-extra">
             <div class="products-items-info">
@@ -290,7 +362,7 @@
             </div>
           </div>
         </div>
-        <div class="products-item">
+        <div class="products-item" data-product-id="7">
           <div class="products-item-image">
             <img src="images/bur_7.png" alt="burger-7">
           </div>
@@ -321,14 +393,14 @@
             </div>
           </div>
         </div>
-        <div class="products-item">
+        <div class="products-item" data-product-id="8">
           <div class="products-item-image">
             <img src="images/bur_8.png" alt="burger-8">
           </div>
           <div class="products-item-title">Плаксивый Джо</div>
           <div class="products-item-text">
             Булочка для бургера, говяжья котлета, грудинка, помидор, огурец маринованный, красный лук, сыр, перец
-            халапеньо, кетчуп, зелень
+            халапеньо, зелень
           </div>
           <div class="products-item-extra">
             <div class="products-items-info">
@@ -352,7 +424,7 @@
             </div>
           </div>
         </div>
-        <div class="products-item">
+        <div class="products-item" data-product-id="9">
           <div class="products-item-image">
             <img src="images/bur_9.png" alt="burger-9">
           </div>
@@ -384,13 +456,14 @@
             </div>
           </div>
         </div>
-        <div class="products-item">
+        <div class="products-item" data-product-id="10">
           <div class="products-item-image">
             <img src="images/bur_10.png" alt="burger-10">
           </div>
           <div class="products-item-title">Фрешбургер</div>
           <div class="products-item-text">
-            Булочка для бургера, говяжья котлета, бекон, сыр чеддар, яйцо, салями, соус барбекю, соус сырный, салат
+            Булочка для бургера, говяжья котлета, соленый огурец, бекон, сыр чеддар, яйцо, салями, соус барбекю, соус
+            сырный, салат
             айсберг, свежий томат
           </div>
           <div class="products-item-extra">
@@ -415,7 +488,7 @@
             </div>
           </div>
         </div>
-        <div class="products-item">
+        <div class="products-item" data-product-id="11">
           <div class="products-item-image">
             <img src="images/bur_11.png" alt="burger-11">
           </div>
@@ -446,7 +519,7 @@
             </div>
           </div>
         </div>
-        <div class="products-item">
+        <div class="products-item" data-product-id="12">
           <div class="products-item-image">
             <img src="images/bur_12.png" alt="burger-12">
           </div>
