@@ -861,19 +861,32 @@ window.addEventListener('click', function (event) {
     cartProductListBody.insertAdjacentHTML('beforeend', cartProductHTML);
 
 
-    // ?
     calculateTotalPrice();
 
-    // ?
-    // if (target.classList.contains('cart-counter-label')) {
-    //   cartContentContainer.style.display = "flex";
-    //   console.log('kjjhhjkh dfgj');
-    // }
-    // ?
   };
 
 
 
 });
 
+let actionCartBtn = document.querySelector('.cart-main-actions');
+let orderBtn = actionCartBtn.querySelector('button[type="submit"]');
+orderBtn.addEventListener('click', () => {
+  alert('Ваше замовлення успішно виконано!');
+  // налаштувати логіку оплати
 
+  //1 варіант оновлення сторінки
+  location.reload();
+});
+
+let clearBtn = document.querySelector('.clear-btn');
+clearBtn.addEventListener('click', () => {
+  const confirmation = confirm('Видалити товари з кошика?');
+  if (confirmation) {
+    alert('Товари були успішно видалені з кошика!');
+    location.reload();
+  }
+});
+
+let continueBtn = actionCartBtn.querySelector('button[type="button"]');
+continueBtn.addEventListener('click', () => { cartProductItems.classList.toggle('active'); })
