@@ -291,7 +291,7 @@ function increaseQuantity(button) {
   let isInCart = button.closest('.cart-product-main-list') !== null;
 
   if (isInCart) {
-    if (count > 1) {
+    if (count > 0) {
 
       let cartProduct = button.closest(".cart-product-main-list");
       let productId = cartProduct.dataset.productId;
