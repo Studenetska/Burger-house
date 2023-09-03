@@ -14,7 +14,7 @@ let name = document.getElementById("name");
 let phone = document.getElementById("phone");
 
 const orderNumber = generateOrderNumber();
-burger.value = `Номер заказа: ${orderNumber}`;
+burger.value = `Номер замовлення: ${orderNumber}`;
 
 document.getElementById("order-action").onclick = function () {
   let hasError = false;
@@ -32,7 +32,7 @@ document.getElementById("order-action").onclick = function () {
     [name, phone].forEach(item => {
       item.value = "";
     });
-    alert("Cпасибо за заказ! Мы скоро с вами свяжемся!");
+    alert("Дякуємо за замовлення! Ми незабаром з вами зв'яжемося!");
     location.reload();
     const newOrderNumber = generateOrderNumber();
   }
@@ -48,14 +48,14 @@ document.getElementById("change-currency").onclick = function (e) {
   let newCurrency = "$"
 
   if (currentCurrency === "$") {
-    newCurrency = "₽";
-    coefficient = 80;
-  } else if (currentCurrency === "₽") {
-    newCurrency = "BYN";
-    coefficient = 3;
-  } else if (currentCurrency === 'BYN') {
+    newCurrency = "₴";
+    coefficient = 39;
+  } else if (currentCurrency === "₴") {
+    newCurrency = "£";
+    coefficient = 0.021;
+  } else if (currentCurrency === '£') {
     newCurrency = '€';
-    coefficient = 0.9;
+    coefficient = 1.17;
   } else if (currentCurrency === '€') {
     newCurrency = '¥';
     coefficient = 6.9;
@@ -68,7 +68,7 @@ document.getElementById("change-currency").onclick = function (e) {
 
   // Обновляем цены для товаров на странице
   for (let i = 0; i < prices.length; i++) {
-    prices[i].innerText = +(prices[i].getAttribute("data-base-price") * coefficient).toFixed(1) + " " + newCurrency;
+    prices[i].innerText = +(prices[i].getAttribute("data-base-price") * coefficient).toFixed(2) + " " + newCurrency;
   }
 
   // Обновляем цены для товаров в корзине
@@ -98,7 +98,7 @@ function calculateTotalPrice() {
 
   let cartTotalAmount = document.querySelector(".cart-total-amount");
   let currentCurrency = document.getElementById("change-currency").innerText;
-  cartTotalAmount.innerText = `Итоговая стоимость: ${total.toFixed(2)} ${currentCurrency}`;
+  cartTotalAmount.innerText = `Підсумкова вартість: ${total.toFixed(2)} ${currentCurrency}`;
 }
 
 let productItems = document.querySelector('.products-items');
@@ -375,14 +375,14 @@ function calculateTotalPrice() {
     switch (currentCurrency) {
       case "$":
         break;
-      case "₽":
-        productBasePrice *= 80;
+      case "₴":
+        productBasePrice *= 39;
         break;
-      case "BYN":
-        productBasePrice *= 3;
+      case "£":
+        productBasePrice *= 0.021;
         break;
       case "€":
-        productBasePrice *= 0.9;
+        productBasePrice *= 1.17;
         break;
       case "¥":
         productBasePrice *= 6.9;
