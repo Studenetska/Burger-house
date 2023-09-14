@@ -66,12 +66,12 @@ document.getElementById("change-currency").onclick = function (e) {
 
   e.target.innerText = newCurrency;
 
-  // Обновляем цены для товаров на странице
+  // Оновляємо ціни для товаров на страниці
   for (let i = 0; i < prices.length; i++) {
     prices[i].innerText = +(prices[i].getAttribute("data-base-price") * coefficient).toFixed(2) + " " + newCurrency;
   }
 
-  // Обновляем цены для товаров в корзине
+  // Оновляємо ціни для товарів в кошику
   for (let i = 0; i < cartProductPrices.length; i++) {
     let cartProductPrice = cartProductPrices[i];
     let basePrice = parseFloat(cartProductPrice.getAttribute("data-base-price"));
@@ -102,72 +102,72 @@ function calculateTotalPrice() {
 }
 
 let productItems = document.querySelector('.products-items');
-// кнопка корзины в меню вверху
+// кнопка кошику у меню зверху
 let cartCounterLabel = document.querySelector('.cart-counter-label');
-// цифирки в меню - счет
+// цифирки у меню - рахунок
 let cartItemsCounter = document.querySelector('.cart-items-counter');
 
-// Общий счетчик цены и общий счетчик количества
+// спільний лічильник цін та спільний лічильний кількості
 let cartCounter = 0;
 let cartPrice = 0;
 
 const btnClickHandler = (e) => {
-  // делегирование на родительский элемент(пока не будет сделано)
+  // делегування на батьківський элемент(поки не буде виконана подія)
   const target = e.target;
 
-  // создаем перемнную для отмены записи, с кнопкой заказать
+  // створюємо зміну для того, щоб відмінити записи з кнопки замовити
   let restoreHTML = null;
 
-  // если куда кликаем не является объектом, но ничего происходить не будет
+  // якщо куди кликаємо не є объектом, то нічего відбуватися не буде
   if (typeof target !== 'object') return
 
-  // для делегирования нужно проверить куда кликаем, добавляем условия
+  // для делегування потрібно перевірити куда клікаємо, добаємо умови
   if (!target.matches('.product-button')) return;
 
   increment(cartCounterLabel, ++cartCounter, cartItemsCounter);
 
 };
 
-// Получаем элемент корзины
+// Отримуємо элемент кошику
 const cartProductItems = document.querySelector('.cart-product-items');
 
 
-// Добавляем обработчик события клика
+// Добаємо обробник події клік
 cartCounterLabel.addEventListener('click', function (e) {
 
   const target = e.target;
-  // Получаем элемент "cart-items-counter"
+  // ОТримуємо элемент "cart-items-counter"
   const cartItemsCounter = document.querySelector('.cart-items-counter');
 
-  // Проверяем, есть ли у элемента класс "has-items"
+  // Перевіряємо, чи є у элемента класс "has-items"
   if (cartItemsCounter.classList.contains('has-items')) {
-    // Добавляем или удаляем класс "active" у секции
+    // додаємо /видаляємо класс "active" у секції
     cartProductItems.classList.toggle('active');
   }
 
 });
 
 
-// чтобы иметь возможность перенести код в другую страницу, вынесем его в функцию
+// щоб мати можливість перенести код на іншу сторінку, винесемо його до функції
 function increment($label, cartCn, $itCn) {
-  // $ - обозначает дом элемент
+  // $ - дом элемент
   $label.querySelector('.cart-items-counter').innerText = cartCn;
   if (cartCn === 1) $itCn.style.display = 'block' && $itCn.classList.add('has-items');
 };
 
-// функция выключения возможности кликать на заказ
+// функція вимкнення можливості кликати на замовлення
 function disabledControls(target, productItems, btnClickHandler) {
-  // защита от дурака делаем так, чтобы на кнопку миллион раз нажимать было нельзя
+  // захист від зависано, щоб на кнопку мильйон разів тиснути було не можливо
   target.disabled = true;
-  // чтобы выключить элементы рядом при состоянии не нажатия, а именно disabled
+  // щоб вимкнути элементи поруч при стані не натискання, а саме disabled
   productItems.removeEventListener('click', btnClickHandler);
 };
 
-// функция включения возможности кликать на заказать
+// функція включення можливості клікати на замовленні
 function enabledControls(target, productItems, btnClickHandler) {
-  // разрешаем клик на кнопку(конкретную)
+  // дозволяємо клік на кнопку(певну)
   target.disabled = false;
-  // опять включаем возможность покупать на всех элементах
+  // знов вмикаємо можливість купувати на всіх элементах
   productItems.addEventListener('click', btnClickHandler);
 };
 
@@ -175,7 +175,7 @@ function enabledControls(target, productItems, btnClickHandler) {
 productItems.addEventListener('click', btnClickHandler);
 
 
-// переключатель стиля в кнопке  при нажатии
+// перемикач стилю в кнопці  при натисканні
 function toggleProductCalculator(button) {
   let elements = getProductElements(button);
 
@@ -193,7 +193,7 @@ function decreaseQuantity(button) {
 
   increment(cartCounterLabel, --cartCounter, cartItemsCounter);
 
-  // Проверяем, находится ли кнопка в корзине
+  // Перевіряємо,чи знаходиться кнопка у кошику
   let isInCart = button.closest('.cart-product-main-list') !== null;
 
 
@@ -235,7 +235,7 @@ function decreaseQuantity(button) {
         let catalogCountElement = catalogButton.parentNode.querySelector(".count");
         catalogCountElement.innerText = 0;
 
-        // чтобы скрывать счет товаров при 0 значении в корзине,кнопка на странице
+        // щоб скрити рахунок товарів при 0 значенні у кошику,кнопка на сторінці
         let productActionButton = catalogProduct.querySelector('.products-item-action');
         let productOrderButton = catalogProduct.querySelector('button.product-button');
         let productCalculator = productActionButton.querySelector('.quantity.calculator');
@@ -261,22 +261,30 @@ function decreaseQuantity(button) {
     }
   }
 
-  // ! запись товара в корзину + цена
+  // ! запис товару до кошику + ціна
   calculateTotalPrice();
 
   // !
-  // Находим ближайшего родителя с классом ".products-item"
+  // Знаходимо найближчого родича з классом ".products-item"
   let cartProduct = button.closest(".products-item");
 
-  // Получаем значение атрибута "data-product-id" из элемента
+  // ОТримуємо значення атрибуту "data-product-id" з элемента
   const productId = cartProduct.dataset.productId;
 
-  // Выполняем обновление количества товаров для конкретной карточки
+  // Виконуємо оновлення кількості товарів для конкретной карточки
   updateCartItemQuantity(productId, countElement.innerText);
+
+  // захист від великої кількості натискань
+  disabledControls(button, cartProduct, btnClickHandler)
+
+  setTimeout(function () {
+    enabledControls(button, cartProduct, btnClickHandler);
+  }, 1000);
+
 
 };
 
-// для кнопки "+" логика
+// для кнопки "+" логіка
 function increaseQuantity(button) {
 
   let countElement = button.parentNode.querySelector(".count");
@@ -285,7 +293,7 @@ function increaseQuantity(button) {
   countElement.innerText = count + 1;
 
 
-  // ! запись товара в корзину + цена
+  // ! запис товару до  кошику + ціна
   calculateTotalPrice();
 
   let isInCart = button.closest('.cart-product-main-list') !== null;
@@ -316,19 +324,26 @@ function increaseQuantity(button) {
   }
 
   // !
-  // Находим ближайшего родителя с классом ".products-item"
+  // Находимо найближчого родича з классом ".products-item"
   let cartProduct = button.closest(".products-item, .cart-product-main-list");
 
-  // Получаем значение атрибута "data-product-id" из элемента
+  // Отримуємо значення атрибуту "data-product-id" з элементу
   const productId = cartProduct.dataset.productId;
 
-  // Выполняем обновление количества товаров для конкретной карточки
+  // виконуємо оновлення кількості товарів для конкретноі карточки
   updateCartItemQuantity(productId, countElement.innerText);
+
+  // захист від великої кількості натискань
+  disabledControls(button, cartProduct, btnClickHandler)
+
+  setTimeout(function () {
+    enabledControls(button, cartProduct, btnClickHandler);
+  }, 1000);
 
 };
 
 
-// чтобы избежать дубляжа кода выносим нахождение переменных
+//  для уникнення дубляжу коду виносимо знаходження змінних
 function getProductElements(button) {
   let parent = button.closest(".products-item");
   return {
@@ -338,7 +353,7 @@ function getProductElements(button) {
   };
 };
 
-// переключатель стиля для избежания дубляжа
+// перемикач стилю для уникнення дубляжу коду
 function toggleProductElement(element, displayValue) {
   element.style.display = displayValue;
 };
@@ -353,7 +368,6 @@ function updateCartItemQuantity(productId, count) {
     const countElement = cartProduct.querySelector(".cart-product-count");
     countElement.innerText = count;
   }
-
 
   calculateTotalPrice()
 }
@@ -370,7 +384,7 @@ function calculateTotalPrice() {
     let count = parseInt(countElement.innerText);
 
 
-    // Обновляем текст цены с учетом выбранной валюты и коэффициента
+    // Оновляємо текст цін с рахунком обранної валюти та її коєффіціенту
     let currentCurrency = document.getElementById("change-currency").innerText;
     switch (currentCurrency) {
       case "$":
@@ -391,7 +405,7 @@ function calculateTotalPrice() {
 
     let price = productBasePrice.toFixed(2);
 
-    // Обновляем текст цены в карточке товара в корзине
+    // Оновлюємо текст цін у карточці товару у кошику
     priceElement.innerText = price + " " + currentCurrency;
 
     total += price * count;
@@ -399,41 +413,41 @@ function calculateTotalPrice() {
 
   let cartTotalAmount = document.querySelector(".cart-total-amount");
   let currentCurrency = document.getElementById("change-currency").innerText;
-  cartTotalAmount.innerText = `Итоговая стоимость: ${total.toFixed(2)} ${currentCurrency}`;
+  cartTotalAmount.innerText = `Підсумкова вартість: ${total.toFixed(2)} ${currentCurrency}`;
 
   const orderNumberElement = document.getElementById('order-number');
   orderNumberElement.innerText = burger.value;
 }
 
-// Функция для генерации уникальных номеров заказов
+// Функція для генерації унікальних номерів замовлення
 function generateOrderNumber() {
 
-  // Существет или нет в localStorage номер заказа
+  // Чи існує в localStorage номер замовлення
   let orderNumber = localStorage.getItem('orderNumber');
 
-  // при условии что заказ не сгенерирован или не является уникальным
+  // при умові, що замовлення не сгенерировано, чи не является унікальним
   if (!orderNumber || !isUniqueOrderNumber(orderNumber)) {
-    // Текущая дата
+    // Поточка дата
     const currentDate = new Date();
-    // числа определяються до 10000
+    // числа надаються до 10000
     const randomNumber = Math.floor(Math.random() * 10000);
     orderNumber = `${currentDate.getFullYear()}${currentDate.getMonth() + 1}${currentDate.getDate()}-${randomNumber}`;
 
-    // Сохраняю номер заказа в localStorage
+    // Збережу. номер замовлення в localStorage
     localStorage.setItem('orderNumber', orderNumber);
   }
 
   return orderNumber;
 }
 
-// Проверка на уникальность номера заказа
+// Перевірка на унікальність номер замовлення
 function isUniqueOrderNumber(orderNumber) {
-  // Получаем все ранее использованные номера заказов из localStorage
+  // Отримуємо всі раніше використані номери замовлень з localStorage
   const usedOrderNumbers = JSON.parse(localStorage.getItem('usedOrderNumbers')) || [];
 
-  // Проверяем, уникальный ли текущий номер заказа
+  // Перевіряемо, унікальність поточного номеру замовлення
   if (usedOrderNumbers.includes(orderNumber)) {
-    return false; // Номер заказа не уникальный
+    return false; // Номер замовлення не унікальний
   }
 
   // Добавляем текущий номер заказа в список использованных
@@ -446,14 +460,14 @@ function isUniqueOrderNumber(orderNumber) {
 
 }
 
-// ? ДЛЯ КОРЗИНЫ ЛОГИКА
+// ? ДЛЯ Кошику ЛОГіКА
 
 window.addEventListener('click', function (event) {
   let target = event.target;
 
-  // проверяем был ли сделан клик по кнопке заказать
+  // перевіряем чи був зроблен клік по кнопці замовити
   if (target.classList.contains('product-button')) {
-    // находим родителя этого элемента(те всю карточку)
+    // знаходимо батьків цього элементу(не всю карточку)
     let parentProductItem = target.closest(".products-item");
     // console.log(parentProductItem);
 
@@ -466,7 +480,7 @@ window.addEventListener('click', function (event) {
     }
 
     const productInfo = {
-      // нужно в id давать артикул товара пока его нет
+      // потрібно в id додати артикул товару поки що его немає
       id: parentProductItem.getAttribute("data-product-id"),
       image: parentProductItem.querySelector("img").getAttribute("src"),
       title: parentProductItem.querySelector(".products-item-title").innerText,
@@ -511,22 +525,22 @@ window.addEventListener('click', function (event) {
   };
 
 
-  // Обработчик для кнопки "decrement"
+  // обробник для кнопки "decrement"
   if (target.classList.contains('decrement')) {
-    // Найдите родительскую карточку товара
+    //Знаходемо батьківську карточку товару
     let productCard = target.closest('.products-item');
 
     if (productCard) {
-      // Получите счетчик товара
+      // Лічильник товару
       let countElement = productCard.querySelector('.count');
       let count = parseInt(countElement.innerText);
 
-      // Проверьте, равен ли счетчик 0
+      // Перевікра, чи рівен лічильник 0
       if (count === 0) {
-        // Если счетчик равен 0, то можно вызвать функцию удаления товара из корзины
-        // Получаю id товара
+        // Якщо лічильник рівен 0, то можно викликати функцію видалення товару з кошику
+        // ОТримаю id товару
         let productId = productCard.getAttribute('data-product-id');
-        // Вызов функции удаления товара из корзины
+        //виклик функції видалення товару з кошику
         removeProductFromCart(productId);
       }
     }
@@ -536,7 +550,7 @@ window.addEventListener('click', function (event) {
 });
 
 function removeProductFromCart(productId) {
-  // Найти карточку товара в корзине по productId и удалить ее
+  // Функція для того, щоб знайти карту товару у уошику по productId та видалити її
   let cartProduct = document.querySelector(`.cart-product-main-list[data-product-id="${productId}"]`);
   if (cartProduct) {
     cartProduct.remove();
@@ -550,7 +564,7 @@ let actionCartBtn = document.querySelector('.cart-main-actions');
 let orderBtn = actionCartBtn.querySelector('button[type="submit"]');
 
 
-// 1й вариант  - Обновленный обработчик для кнопки "Заказать"
+// 1й вариант  - оновленний обробник для кнопки "Заказать"
 orderBtn.addEventListener('click', () => {
   alert('Ваше замовлення успішно виконано!');
   // налаштувати логіку оплати
@@ -560,7 +574,7 @@ orderBtn.addEventListener('click', () => {
   const newOrderNumber = generateOrderNumber();
 });
 
-// Функция для очистки корзины
+// Функція для видалення з кошику
 function clearCart() {
   const cartProducts = document.querySelectorAll('.cart-product-main-list');
   cartProducts.forEach((cartProduct) => {
